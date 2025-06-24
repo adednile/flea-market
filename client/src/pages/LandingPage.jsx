@@ -75,7 +75,14 @@ function LandingPage(){
       <header style={{ display: "flex", justifyContent: "space-between", padding: "1rem" }}>
         <h1>🛒 Strathmore Market Place</h1>
         <Link to="/vendor-register">
-          <button style={{ padding: "0.5rem 1rem" }}>Sell</button>
+          <button style={{
+              padding:"0.5rem 1rem",
+              backgroundColor:"#2563eb",
+              color:"white",
+              border:"none",
+              borderRadius:"6px",
+              cursor:"pointer"
+          }}>Sell</button>
         </Link>
       </header>
 
