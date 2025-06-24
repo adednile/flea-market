@@ -120,7 +120,7 @@ function Footer(){
             color: "#95a5a6"
           }}
         >
-          <p>© 2024 Strathmore Marketplace. All rights reserved. | Made with ❤️ in Strathmore</p>
+          <p>© 2025 Strathmore Marketplace. All rights reserved. | Made with ❤️ in Strathmore</p>
         </div>
       </footer>
         
