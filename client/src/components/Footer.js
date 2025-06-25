@@ -19,6 +19,7 @@
 // export default Footer;
 
 import React  from "react";
+import { Link, useNavigate } from "react-router";
 
 function Footer(){
     return (
@@ -93,6 +94,8 @@ function Footer(){
               <p>🎧 24/7 Support</p>
               <p>💳 Secure Payments</p>
             </div>
+              
+          <Link to="/contact">
             <button 
               style={{
                 marginTop: "1rem",
@@ -106,7 +109,7 @@ function Footer(){
               }}
             >
               Get Help
-            </button>
+            </button></Link>
           </div>
         </div>
 

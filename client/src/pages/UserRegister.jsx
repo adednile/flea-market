@@ -49,7 +49,7 @@ function UserRegister(){
         width: "100%",
         maxWidth: "400px"
       }}>
-        <h2 style={{ textAlign: "center", marginBottom: "1.5rem" }}>Vendor Registration</h2>
+        <h2 style={{ textAlign: "center", marginBottom: "1.5rem" }}>User Registration</h2>
 
         <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column" }}>
           <label style={{ marginBottom: "0.5rem" }}>Name:</label>
