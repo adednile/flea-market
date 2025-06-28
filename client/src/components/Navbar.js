@@ -19,6 +19,8 @@ function Navbar() {
           <Link to="/LandingPage">Shop</Link>
           <Link to="/about">About</Link>
           <Link to="/contact">Contact</Link>
+          <Link to="/user-dashboard">User Dashboard</Link>
+
           </div>
         </div>
         <div className="rightSide">
