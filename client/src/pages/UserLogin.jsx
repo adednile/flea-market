@@ -66,7 +66,7 @@ function UserLogin(){
             }}
           />
 
-        <Link to="user-dashboard">
+        <Link to="/userdashboard">
           <button
             type="submit"
             style={{
