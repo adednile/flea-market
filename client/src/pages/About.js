@@ -25,7 +25,7 @@ function About() {
         Connecting Buyers & Sellers
         
       </div>
-      <div className="aboutBottom" style={{ padding: "3rem", maxWidth:"900px", margin:"auto", lineHeight:"1.8", fontSize:"1.1rem"}}>
+      <div className="aboutBottom" style={{ padding: "3rem", margin:"auto", lineHeight:"1.8", fontSize:"1.1rem"}}>
 
         <h1 style={{ textAlign:"center", marginBottom:"1.5rem"}}>ABOUT US</h1>
 

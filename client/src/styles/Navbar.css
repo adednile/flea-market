@@ -4,6 +4,8 @@
   background-color: #121619;
   display: flex;
   flex-direction: row;
+  position: sticky;
+  
 }
 
 .navbar .leftSide {

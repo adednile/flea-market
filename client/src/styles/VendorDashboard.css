@@ -1,0 +1,92 @@
+.vendor-dashboard {
+  padding: 2rem;
+  background-color: #f9fafb;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 0;
+  color: #2c3e50;
+}
+
+.dashboard-header p {
+  color: #666;
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+.profile-section {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.metric-card {
+  background-color: #ffffff;
+  padding: 1.2rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.metric-label {
+  font-size: 14px;
+  color: #888;
+  margin: 0;
+}
+
+.metric-value {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 0.5rem;
+}
+
+.products-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.products-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.add-button {
+  padding: 0.5rem 1rem;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.add-button:hover {
+  background-color: #1e4bbf;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}

@@ -2,52 +2,67 @@
   width: 100%;
   height: 90vh;
   display: flex;
-  justify-content: center;
-  align-items: left;
+  justify-content: flex-start;
+  align-items: flex-start;
   flex-direction: column;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: "Poppins", sans-serif;
+
+  position: relative;
 }
 
 .headerContainer {
   width: auto;
   margin-left: 50px;
+  margin-top: 100px;
+  z-index: 2;
+  color: white;
 }
 
 .headerContainer h1 {
   justify-content: center;
   align-items: center;
-  font-size: 90px;
+  font-size: 70px;
   height: 60px;
   font-weight: 50;
-  color: black;
+  color: white;
+
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .headerContainer p {
   padding: 0;
-  font-size: 40px;
-  font-weight: lighter;
-  color: black;
+  font-size: 28px;
+  font-weight: 300;
+  color: #f0f0f0;
+
+  margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .headerContainer button {
-  color: black;
+  color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 30px;
   cursor: pointer;
   justify-content: center;
   background-color: #121619;
   height: 50px;
   width: 180px;
-  color: white;
+  
   text-decoration: none;
-  font-size: 20px;
+  font-size: 18px;
+
+  padding: 12px 24px;
+  font-weight: 600;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .headerContainer button:hover {
-  background-color: #07090a;
+  background-color: #e84118;
   cursor: pointer;
   transition: 0.3s ease-in;
 }
@@ -61,14 +76,18 @@
   .headerContainer {
     margin-left: 0px;
     border-radius: 10px;
-    padding: 10px;
-    width: 80%;
+    padding: 20px;
+    width: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     background-color: #121619;
     color: white;
+
+    margin: 0;
+    text-align: center;
+    background-color: rgba(0,0,0,0.5);
   }
 
   .headerContainer h1 {
@@ -78,7 +97,7 @@
   }
 
   .headerContainer p {
-    font-size: 30px;
+    font-size: 20px;
     color: white;
   }
 
@@ -86,10 +105,24 @@
     background-color: white;
     color: #121619;
     margin-bottom: 30px;
+
+    padding: 10px 20px;
+    font-size: 16px;
   }
 
   .headerContainer button:hover {
     background-color: rgb(225, 225, 225);
     color: #121619;
   }
+}
+
+/* Addtional code */
+.overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 90vh;
+  width: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1;
 }

@@ -16,6 +16,8 @@ import VendorLogin from './pages/VendorLogin';
 import VendorDashboard from './pages/VendorDashboard';
 import UserDashboard from './pages/userdashboard';
 
+import { Link } from "react-router";
+
 function App() {
   return (
     <div className="App">
@@ -33,6 +35,11 @@ function App() {
             <Route path="/vendor-dashboard" element={<VendorDashboard/>} />
             <Route path="/userdashboard" element={<UserDashboard />} />
           </Routes>
+          <section className='decorative-strip'>
+            <h2>Want to become a vendor?</h2>
+            <p>Join hundreds of Stratizens earning from their crafts, products and skills.</p>
+            <Link to="/vendor-register"><button className='cta-btn'>Register Now</button></Link>
+          </section>
           <Footer />
         </Router>
       </div>
