@@ -1,166 +1,155 @@
-let products = [
+let products = JSON.parse(localStorage.getItem("fleaMarketProducts")) ||[
   {
     name: "Handmade Necklace",
-    price: "Ksh 500",
-    image: "./Images/Handmade Necklace.jpg",
+    price: "Ksh 1000",
+    image: "Images/Handmade Necklace.jpg",
     alt: "Handmade beaded necklace with colorful stones"
   },
   {
     name: "Vintage T-Shirt",
     price: "Ksh 1500",
-    image: "./Images/Vintage T-shirt.jpg",
+    image: "Images/Vintage T-shirt.jpg",
     alt: "Vintage band t-shirt from the 1990s"
   },
   {
     name: "Art Poster",
-    price: "Ksh 1000",
-    image: "./Images/Art  Poster.png",
+    price: "Ksh 800",
+    image: "Images/Art-Poster.png",
     alt: "Modern art poster featuring abstract design"
   }
 ];
 
-function createProductCard(product, index) {
-  const article = document.createElement("article");
-  article.className = "product-card";
+// Create header
+const header = document.createElement("header");
+header.className = "site-header";
+header.innerHTML = `
+  <div class="container">
+    <div class="branding">
+      <h1 class="site-title">Flea Market</h1>
+      <p class="site-tagline">Connecting vendors with potential customers</p>
+      <span class="vendor-welcome">Welcome, Vendor!</span>
+    </div>
+    <div class="logout-container">
+      <button class="btn btn-danger">Logout</button>
+    </div>
+  </div>
+`;
 
-  const img = document.createElement("img");
-  img.src = product.image;
-  img.alt = product.alt;
+// Create main section
+const main = document.createElement("main");
+main.innerHTML = `
+  <div class="container welcome">
+    <section class="dashboard-header">
+      <h2>My Products</h2>
+      <button class="btn btn-danger add-product" aria-label="Add new product">+ Add Product</button>
+    </section>
+    <section class="product-grid" id="productGrid"></section>
+  </div>
+`;
 
-  const details = document.createElement("div");
-  details.className = "product-details";
+// Append header and main to app
+const app = document.getElementById("app");
+app.appendChild(header);
+app.appendChild(main);
 
-  const title = document.createElement("h3");
-  title.textContent = product.name;
+// Populate product cards
+const productGrid = document.getElementById("productGrid");
 
-  const price = document.createElement("p");
-  price.textContent = product.price;
-
-  const actions = document.createElement("div");
-  actions.className = "card-actions";
-
-  const editBtn = document.createElement("button");
-  editBtn.className = "edit-btn";
-  editBtn.setAttribute("aria-label", "Edit product details");
-  editBtn.textContent = "Edit";
-  editBtn.onclick = () => editProduct(index);
-
-  const deleteBtn = document.createElement("button");
-  deleteBtn.className = "delete-btn";
-  deleteBtn.setAttribute("aria-label", "Delete product");
-  deleteBtn.textContent = "Delete";
-  deleteBtn.onclick = () => deleteProduct(index);
-
-  actions.appendChild(editBtn);
-  actions.appendChild(deleteBtn);
-
-  details.appendChild(title);
-  details.appendChild(price);
-  details.appendChild(actions);
-
-  article.appendChild(img);
-  article.appendChild(details);
-
-  return article;
+function saveProducts() {
+  localStorage.setItem("fleaMarketProducts", JSON.stringify(products));
 }
-
 function renderProducts() {
-  const productGrid = document.querySelector(".product-grid");
-  productGrid.innerHTML = ""; // Clear old content
+  productGrid.innerHTML = "";
   products.forEach((product, index) => {
-    productGrid.appendChild(createProductCard(product, index));
+    const card = document.createElement("article");
+    card.className = "product-card";
+    card.innerHTML = `
+      <img src="${product.image}" alt="${product.alt}">
+      <div class="product-details">
+        <h3>${product.name}</h3>
+        <p>${product.price}</p>
+        <div class="card-actions">
+          <button class="btn btn-edit" data-index="${index}">Edit</button>
+          <button class="btn btn-danger btn-delete" data-index="${index}">Delete</button>
+        </div>
+      </div>
+    `;
+    productGrid.appendChild(card);
+
+    // Delete button
+    card.querySelector(".btn-delete").addEventListener("click", () => {
+      products.splice(index, 1);
+      saveProducts(); // Save after deletion
+      renderProducts();
+    });
+
+    // Edit button
+    card.querySelector(".btn-edit").addEventListener("click", () => {
+      editProduct(index);
+    });
   });
 }
 
-function deleteProduct(index) {
-  if (confirm("Are you sure you want to delete this product?")) {
-    products.splice(index, 1);
-    renderProducts();
-  }
-}
-
+// Edit Product Function
 function editProduct(index) {
-  const current = products[index];
-  const name = prompt("Enter product name:", current.name);
-  const price = prompt("Enter product price:", current.price);
-  const image = prompt("Enter image URL or path:", current.image);
-  const alt = prompt("Enter image alt text:", current.alt);
-
-  if (name && price && image && alt) {
-    products[index] = { name, price, image, alt };
-    renderProducts();
-  }
-}
-
-function addProduct() {
-  const name = prompt("Enter product name:");
-  const price = prompt("Enter product price:");
-  const image = prompt("Enter image URL or path:");
-  const alt = prompt("Enter image alt text:");
-
-  if (name && price && image && alt) {
-    products.push({ name, price, image, alt });
-    renderProducts();
-  }
-}
-
-function buildDashboard() {
-  const container = document.createElement("div");
-
-  // Header
-  const header = document.createElement("header");
-  header.className = "site-header";
-
-  const headerContainer = document.createElement("div");
-  headerContainer.className = "container";
-
-  const branding = document.createElement("div");
-  branding.className = "branding";
-  branding.innerHTML = `
-    <h1 class="site-title">Flea Market</h1>
-    <p class="site-tagline">Connecting vendors with potential customers</p>
-    <span class="vendor-welcome">Welcome, Vendor!</span>
+  const product = products[index];
+  
+  // Create a modal or form for editing
+  const editForm = document.createElement("div");
+  editForm.className = "edit-form";
+  editForm.innerHTML = `
+    <h3>Edit Product</h3>
+    <form id="editProductForm">
+      <label>Name: <input type="text" name="name" value="${product.name}" required></label>
+      <label>Price: <input type="text" name="price" value="${product.price}" required></label>
+      <label>Image URL: <input type="text" name="image" value="${product.image}" required></label>
+      <label>Alt Text: <input type="text" name="alt" value="${product.alt}" required></label>
+      <div class="form-actions">
+        <button type="submit">Save</button>
+        <button type="button" class="cancel-btn">Cancel</button>
+      </div>
+    </form>
   `;
 
-  const logoutContainer = document.createElement("div");
-  logoutContainer.className = "logout-container";
-  const logoutBtn = document.createElement("button");
-  logoutBtn.className = "btn btn-danger";
-  logoutBtn.textContent = "Logout";
-  logoutContainer.appendChild(logoutBtn);
+  // Append form to the body (or use a modal)
+  document.body.appendChild(editForm);
 
-  headerContainer.appendChild(branding);
-  headerContainer.appendChild(logoutContainer);
-  header.appendChild(headerContainer);
-  container.appendChild(header);
+  // Handle form submission
+  const form = editForm.querySelector("#editProductForm");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    
+    // Update the product
+    products[index] = {
+      name: formData.get("name"),
+      price: formData.get("price"),
+      image: formData.get("image"),
+      alt: formData.get("alt")
+    };
 
-  // Main
-  const main = document.createElement("main");
-  const mainContainer = document.createElement("div");
-  mainContainer.className = "container welcome";
+    // Re-render products and remove the form
+    renderProducts();
+    editForm.remove();
+  });
 
-  const dashboardHeader = document.createElement("section");
-  dashboardHeader.className = "dashboard-header";
-  dashboardHeader.innerHTML = `<h2>My Products</h2>`;
-  const addBtn = document.createElement("button");
-  addBtn.className = "btn btn-danger add-product";
-  addBtn.setAttribute("aria-label", "Add new product");
-  addBtn.textContent = "+ Add Product";
-  addBtn.onclick = addProduct;
-  dashboardHeader.appendChild(addBtn);
-
-  const productGrid = document.createElement("section");
-  productGrid.className = "product-grid";
-
-  mainContainer.appendChild(dashboardHeader);
-  mainContainer.appendChild(productGrid);
-  main.appendChild(mainContainer);
-  container.appendChild(main);
-
-  document.getElementById("app").appendChild(container);
-
-  renderProducts(); // Initial render
+  // Handle cancel
+  editForm.querySelector(".cancel-btn").addEventListener("click", () => {
+    editForm.remove();
+  });
 }
 
-// Run
-buildDashboard();
+// Initial render
+renderProducts();
+
+// Add new product button functionality (optional)
+document.querySelector(".add-product").addEventListener("click", () => {
+  const newProduct = {
+    name: "New Product",
+    price: "$0.00",
+    image: "Images/placeholder.jpg",
+    alt: "New product image"
+  };
+  products.push(newProduct);
+  renderProducts();
+});
