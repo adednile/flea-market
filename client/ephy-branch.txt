@@ -1,4 +1,4 @@
-Here's a summary of what has been implemented in user branch:
+Here's a summary of what has been implemented in ephy branch:
 1. **Authentication System**
     - Added user login functionality
     - Implemented login state persistence using localStorage
