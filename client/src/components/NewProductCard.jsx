@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ProductCard({ name, image, price, category }) {
+function NewProductCard({ name, image, price, category }) {
     return (
         <div style={{
             border: '1px solid #ddd',
@@ -32,4 +32,4 @@ function ProductCard({ name, image, price, category }) {
     );
 }
 
-export default ProductCard;
+export default NewProductCard;

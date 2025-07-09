@@ -1,19 +1,61 @@
-import ProductCard from "../components/ProductCard";
-import { Link } from "react-router";
+import NewProductCard from "../components/NewProductCard";
+import { Link, useNavigate } from "react-router";
 import SearchBar from "../components/SearchBar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../styles/LandingPage.css";
 
 
 function LandingPage(){
     const [searchTerm, setSearchTerm] = useState("");
     const [category, setCategory] = useState("All");
+    const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [userEmail, setUserEmail] = useState("");
+
+    // Check login status on component mount
+    useEffect(() => {
+        const loginStatus = localStorage.getItem('isLoggedIn') === 'true';
+        const email = localStorage.getItem('userEmail');
+        setIsLoggedIn(loginStatus);
+        if (email) setUserEmail(email);
+    }, []);
 
     // Get cart items from localStorage or initialize empty array
     const [cartItems, setCartItems] = useState(() => {
         const savedCart = localStorage.getItem('cartItems');
         return savedCart ? JSON.parse(savedCart) : [];
     });
+
+    // Handle login/logout
+    const handleAuthAction = () => {
+        if (isLoggedIn) {
+            // Handle logout
+            localStorage.setItem('isLoggedIn', 'false');
+            setIsLoggedIn(false);
+            navigate('/LandingPage');
+        } else {
+            // Redirect to login page
+            navigate('/user-login');
+        }
+    };
+
+    // Handle cart click
+    const handleCartClick = () => {
+        if (isLoggedIn) {
+            navigate('/user-dashboard');
+        } else {
+            navigate('/user-login');
+        }
+    };
+
+    // Add this function to handle logout
+    const handleLogout = () => {
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('userEmail');
+        setIsLoggedIn(false);
+        setUserEmail("");
+        navigate('/LandingPage');
+    };
 
     //sample product data
     //ADD MOCK DATA FROM HERE
@@ -102,7 +144,7 @@ function LandingPage(){
 
     const ProductCardWithAddToCart = ({ product }) => (
         <div style={{ position: 'relative', marginBottom: '2rem' }}>
-            <ProductCard {...product} />
+            <NewProductCard {...product} />
             <button
                 onClick={() => addToCart(product)}
                 style={{
@@ -129,14 +171,49 @@ function LandingPage(){
             <div className="landing-header">
                 <h1>🛒 Strathmore Market Place</h1>
                 <div style={{ display: 'flex', gap: '1rem' }}>
+                    {isLoggedIn && (
+                        <span style={{ color: '#666' }}>
+                            Welcome, {userEmail}
+                        </span>
+                    )}
                     <Link to="/vendor-register">
                         <button className="sell-btn">Sell</button>
                     </Link>
-                    <Link to="/userdashboard">
+                    <Link to={isLoggedIn ? "/userdashboard" : "/user-login"}>
                         <button className="cart-btn">
                             Cart ({cartItems.length})
                         </button>
                     </Link>
+                    {isLoggedIn ? (
+                        <button
+                            onClick={handleLogout}
+                            style={{
+                                padding: '0.5rem 1rem',
+                                backgroundColor: '#ff4444',
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '5px',
+                                cursor: 'pointer'
+                            }}
+                        >
+                            Logout
+                        </button>
+                    ) : (
+                        <Link to="/user-login">
+                            <button
+                                style={{
+                                    padding: '0.5rem 1rem',
+                                    backgroundColor: '#4CAF50',
+                                    color: 'white',
+                                    border: 'none',
+                                    borderRadius: '5px',
+                                    cursor: 'pointer'
+                                }}
+                            >
+                                Login
+                            </button>
+                        </Link>
+                    )}
                 </div>
             </div>
 

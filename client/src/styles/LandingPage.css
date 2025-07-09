@@ -102,3 +102,15 @@
     text-align: center;
   }
 }
+
+.auth-btn {
+  transition: background-color 0.3s;
+}
+
+.auth-btn.login:hover {
+  background-color: #45a049 !important;
+}
+
+.auth-btn.logout:hover {
+  background-color: #ff0000 !important;
+}

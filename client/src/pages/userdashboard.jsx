@@ -1,7 +1,7 @@
 // src/pages/UserDashboard.jsx
 import React, { useState, useEffect } from 'react';
 import LandingPage from "./LandingPage";
-import ProductCard from "../components/ProductCard";
+import NewProductCard from "../components/NewProductCard";
 
 function UserDashboard() {
   const [user, setUser] = useState({
@@ -122,7 +122,7 @@ function UserDashboard() {
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1rem' }}>
                     {purchasedItems.map(item => (
-                        <ProductCard key={item.id} {...item} />
+                        <NewProductCard key={item.id} {...item} />
                     ))}
                 </div>
             </section>
@@ -135,7 +135,7 @@ function UserDashboard() {
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1rem' }}>
                         {cartItems.map(item => (
                             <div key={item.id} style={{ position: 'relative' }}>
-                                <ProductCard {...item} />
+                                <NewProductCard {...item} />
                                 <button
                                     onClick={() => removeFromCart(item.id)}
                                     style={{
