@@ -179,7 +179,7 @@ function LandingPage(){
                     <Link to="/vendor-register">
                         <button className="sell-btn">Sell</button>
                     </Link>
-                    <Link to={isLoggedIn ? "/userdashboard" : "/user-login"}>
+                    <Link to={isLoggedIn ? "/user-dashboard" : "/user-login"}>
                         <button className="cart-btn">
                             Cart ({cartItems.length})
                         </button>

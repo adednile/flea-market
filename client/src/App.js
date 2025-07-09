@@ -14,7 +14,7 @@ import UserLogin from './pages/UserLogin';
 import VendorRegister from './pages/VendorRegister';
 import VendorLogin from './pages/VendorLogin';
 import VendorDashboard from './pages/VendorDashboard';
-import UserDashboard from './pages/userdashboard';
+import UserDashboard from './pages/UserDashboard';
 
 import { Link } from "react-router";
 
@@ -33,7 +33,7 @@ function App() {
             <Route path="/vendor-register" element={<VendorRegister/>} />
             <Route path="/login-vendor" element={<VendorLogin/>} />
             <Route path="/vendor-dashboard" element={<VendorDashboard/>} />
-            <Route path="/userdashboard" element={<UserDashboard />} />
+            <Route path="/user-dashboard" element={<UserDashboard />} />
           </Routes>
           <section className='decorative-strip'>
             <h2>Want to become a vendor?</h2>
