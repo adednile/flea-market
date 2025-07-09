@@ -1,13 +1,32 @@
 // src/pages/UserDashboard.jsx
 import React, { useState, useEffect } from 'react';
-import LandingPage from "./LandingPage";
+import { useNavigate } from "react-router";
 import NewProductCard from "../components/NewProductCard";
+import LandingPage from "./LandingPage";
 
 function UserDashboard() {
+    const navigate = useNavigate();
   const [user, setUser] = useState({
-    name: "Jane Doe",
-    email: "jane@example.com"
+    email: "",
+      isLoggedIn: false
   });
+
+    // Check if user is logged in when component mounts
+    useEffect(() => {
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        const userEmail = localStorage.getItem('userEmail');
+
+        if (!isLoggedIn || !userEmail) {
+            // Redirect to login if not logged in
+            navigate('/user-login');
+            return;
+        }
+
+        setUser({
+            email: userEmail,
+            isLoggedIn: true
+        });
+    }, [navigate]);
 
     // Get cart items from localStorage
     const [cartItems, setCartItems] = useState(() => {
@@ -92,13 +111,32 @@ function UserDashboard() {
         });
     };
 
+    // Handle logout
+    const handleLogout = () => {
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('userEmail');
+        navigate('/LandingPage');
+    };
+
     return (
     <div style={{ padding: '2rem', background: '#f8f8f8', minHeight: '100vh' }}>
       <h1>User Dashboard</h1>
+        <button
+            onClick={handleLogout}
+            style={{
+                padding: '0.5rem 1rem',
+                backgroundColor: '#ff4444',
+                color: 'white',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: 'pointer'
+            }}
+        >
+            Logout
+        </button>
 
-      <section style={{ background: '#fff', padding: '1rem', borderRadius: '10px', marginBottom: '2rem' }}>
+        <section style={{ background: '#fff', padding: '1rem', borderRadius: '10px', marginBottom: '2rem' }}>
         <h2>User Details</h2>
-        <p><strong>Name:</strong> {user.name}</p>
         <p><strong>Email:</strong> {user.email}</p>
       </section>
 
