@@ -1,19 +1,12 @@
 :root {
   /* Color Variables */
-  --primary: #3f4a5a;
-  --primary-dark: #2f3a4a;
-  --secondary: #00796b;
-  --secondary-dark: #00695c;
-  --accent: #64b5f6;
-  --accent-dark: #42a5f5;
   --danger: #e57373;
   --danger-dark: #ef5350;
   --white: #ffffff;
   --light-bg: #f9fafc;
   --border: #dddddd;
   --text-dark: #333333;
-  --text-light: #f5f5f5;
-
+  
   /* Spacing */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
@@ -31,10 +24,9 @@
   /* Transitions */
   --transition-fast: 0.15s ease;
   --transition-normal: 0.3s ease;
-  --transition-slow: 0.5s ease;
 }
 
-/* Base Reset & Styles */
+/* Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -56,7 +48,7 @@ body {
   padding: var(--space-md) var(--space-lg);
 }
 
-/* Header/Navbar */
+/* Header */
 .site-header .container {
   position: relative;
   text-align: center;
@@ -87,11 +79,8 @@ body {
   opacity: 0.9;
 }
 
-.vendor-toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: var(--space-md);
+.vendor-welcome {
+  margin-top: var(--space-xs);
 }
 
 /* Buttons */
@@ -103,89 +92,19 @@ body {
   cursor: pointer;
   font-weight: 500;
   transition: background-color var(--transition-fast);
-}
-
-.btn-primary {
-  background-color: var(--secondary);
-  color: var(--white);
-}
-
-.btn-primary:hover {
-  background-color: var(--secondary-dark);
-}
-
-.btn-accent {
-  background-color: var(--accent);
-  color: var(--white);
-}
-
-.btn-accent:hover {
-  background-color: var(--accent-dark);
-}
-
-.btn-danger {
   background-color: var(--danger);
   color: var(--white);
 }
 
-.btn-danger:hover {
+.btn:hover {
   background-color: var(--danger-dark);
 }
 
-/* Product Card Buttons */
-.card-actions {
-  display: flex;
-  gap: 8px;
-  margin-top: 12px;
+.add-product {
+  padding: var(--space-xs) var(--space-md);
 }
 
-.btn-edit {
-  background-color: #6c757d; /* Gray matching Flea Market theme */
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.2s;
-}
-
-.btn-edit:hover {
-  background-color: #5a6268; /* Darker gray on hover */
-}
-
-.btn-delete {
-  /* Already styled by btn-danger */
-  padding: 6px 12px;
-  font-size: 14px;
-}
-
-/* Make all buttons consistent */
-.btn {
-  display: inline-block;
-  font-weight: 400;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  user-select: none;
-  border: 1px solid transparent;
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  border-radius: 0.25rem;
-  transition: all 0.15s;
-}
-
-.btn-danger {
-  background-color: #dc3545;
-  color: white;
-}
-
-.btn-danger:hover {
-  background-color: #c82333;
-}
-
-/* Dashboard Content */
+/* Dashboard */
 .dashboard-header {
   display: flex;
   justify-content: space-between;
@@ -215,7 +134,7 @@ body {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-.product-image {
+.product-card img {
   width: 100%;
   height: 180px;
   object-fit: cover;
@@ -223,7 +142,7 @@ body {
   margin-bottom: var(--space-sm);
 }
 
-.product-title {
+.product-details h3 {
   font-size: var(--text-base);
   margin: var(--space-xs) 0;
   white-space: nowrap;
@@ -231,7 +150,7 @@ body {
   text-overflow: ellipsis;
 }
 
-.product-price {
+.product-details p {
   font-weight: 700;
   color: var(--text-dark);
 }
@@ -239,18 +158,152 @@ body {
 .card-actions {
   margin-top: var(--space-sm);
   display: flex;
-  justify-content: center;
   gap: var(--space-xs);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .vendor-toolbar {
-    flex-direction: column;
-    align-items: flex-end;
-    gap: var(--space-xs);
-  }
+.edit-btn, .delete-btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: var(--danger);
+  color: var(--white);
+  transition: background-color var(--transition-fast);
+}
 
+.edit-btn:hover, .delete-btn:hover {
+  background-color: var(--danger-dark);
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modal-header {
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.modal-body {
+  overflow-y: auto;
+  padding: var(--space-md);
+  flex-grow: 1;
+}
+
+.modal-footer {
+  padding: var(--space-md);
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.close-modal {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  font-size: var(--text-xl);
+  cursor: pointer;
+}
+
+/* Form */
+.form-group {
+  margin-bottom: var(--space-md);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: var(--space-xs);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: var(--space-xs);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+/* Dropzone */
+.dropzone {
+  width: 100%;
+  min-height: 120px;
+  border: 2px dashed var(--border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  margin: var(--space-md) 0;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.dropzone.hover {
+  background-color: #f0f8ff;
+  border-color: var(--danger);
+}
+
+.dropzone p {
+  margin: var(--space-xs) 0;
+}
+
+/* Preview */
+.preview-item {
+  margin-top: var(--space-md);
+  text-align: center;
+}
+
+.preview-item img {
+  max-width: 100%;
+  max-height: 150px;
+  margin-bottom: var(--space-xs);
+}
+
+/* Scrollbar */
+.modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background: var(--danger);
+  border-radius: 4px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background: var(--danger-dark);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
   .dashboard-header {
     flex-direction: column;
     align-items: flex-start;
@@ -265,5 +318,9 @@ body {
 
   .container {
     padding: var(--space-sm);
+  }
+
+  .modal-content {
+    max-width: 95%;
   }
 }
