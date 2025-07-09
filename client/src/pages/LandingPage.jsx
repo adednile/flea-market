@@ -7,6 +7,14 @@ import "../styles/LandingPage.css";
 
 function LandingPage(){
     const [searchTerm, setSearchTerm] = useState("");
+    const [category, setCategory] = useState("All");
+
+    // Get cart items from localStorage or initialize empty array
+    const [cartItems, setCartItems] = useState(() => {
+        const savedCart = localStorage.getItem('cartItems');
+        return savedCart ? JSON.parse(savedCart) : [];
+    });
+
     //sample product data
     //ADD MOCK DATA FROM HERE
     const products = [
@@ -71,27 +79,68 @@ function LandingPage(){
           price: "KES 4,560",
           category: "Clothing"
         }
+    ].map((product, index) => ({...product, id: index + 1}));
 
+    const addToCart = (product) => {
+        const updatedCart = [...cartItems];
+        const existingProduct = updatedCart.find(item => item.id === product.id);
 
+        if (!existingProduct) {
+            updatedCart.push({
+                ...product,
+                quantity: 1
+            });
+            setCartItems(updatedCart);
+            // Save to localStorage
+            localStorage.setItem('cartItems', JSON.stringify(updatedCart));
+        }
+    };
 
-
-    ];
     //Filtering based on search term and category
-    const [category, setCategory] = useState("All");
     const filteredProducts = products.filter((p) =>
     p.name.toLowerCase().includes(searchTerm.toLowerCase()) && (category === "All" || p.category === category));
 
+    const ProductCardWithAddToCart = ({ product }) => (
+        <div style={{ position: 'relative', marginBottom: '2rem' }}>
+            <ProductCard {...product} />
+            <button
+                onClick={() => addToCart(product)}
+                style={{
+                    position: 'absolute',
+                    bottom: '10px',
+                    right: '10px',
+                    padding: '0.5rem 1rem',
+                    backgroundColor: '#4CAF50',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '5px',
+                    cursor: 'pointer',
+                    opacity: cartItems.some(item => item.id === product.id) ? 0.7 : 1
+                }}
+                disabled={cartItems.some(item => item.id === product.id)}
+            >
+                {cartItems.some(item => item.id === product.id) ? 'In Cart' : 'Add to Cart'}
+            </button>
+        </div>
+    );
+
     return(
-      <div className="landing">
-  <div className="landing-header">
-    <h1>🛒 Strathmore Market Place</h1>
-    <Link to="/vendor-register">
-      <button className="sell-btn">Sell</button>
-    </Link>
-  </div>
+        <div className="landing">
+            <div className="landing-header">
+                <h1>🛒 Strathmore Market Place</h1>
+                <div style={{ display: 'flex', gap: '1rem' }}>
+                    <Link to="/vendor-register">
+                        <button className="sell-btn">Sell</button>
+                    </Link>
+                    <Link to="/userdashboard">
+                        <button className="cart-btn">
+                            Cart ({cartItems.length})
+                        </button>
+                    </Link>
+                </div>
+            </div>
 
-
-    {/* Search bar */}
+            {/* Search bar */}
   <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
   <div className="main-section">
@@ -112,15 +161,18 @@ function LandingPage(){
     </aside>
 
     {/* PRODUCT GRID */}
-    <section className="product-grid">
-      {filteredProducts.length > 0 ? (
-        filteredProducts.map((p, idx) => (
-          <ProductCard key={idx} {...p} />
-        ))
-      ) : (
-        <p className="no-products">No products match your search.</p>
-      )}
-    </section>
+      <section className="product-grid">
+          {filteredProducts.length > 0 ? (
+              filteredProducts.map((product) => (
+                  <ProductCardWithAddToCart
+                      key={product.id}
+                      product={product}
+                  />
+              ))
+          ) : (
+              <p className="no-products">No products match your search.</p>
+          )}
+      </section>
   </div>
 </div>
 
