@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import "../styles/LandingPage.css";
 
 
-function LandingPage(){
+function Shop(){
     const [searchTerm, setSearchTerm] = useState("");
     const [category, setCategory] = useState("All");
     const navigate = useNavigate();
@@ -257,4 +257,4 @@ function LandingPage(){
     );
 }
 
-export default LandingPage;
+export default Shop;

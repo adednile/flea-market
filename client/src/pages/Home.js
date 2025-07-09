@@ -11,7 +11,7 @@ function Home() {
             <div className="headerContainer" >
                 <h1> Flea Market </h1>
                 <p> SHOP TILL YOU DROP </p>
-                <Link to="/LandingPage">
+                <Link to="/Shop">
                     <button> ORDER NOW </button>
                 </Link>
             </div>

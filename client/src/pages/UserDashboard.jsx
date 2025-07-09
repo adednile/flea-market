@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router";
 import NewProductCard from "../components/NewProductCard";
-import LandingPage from "./LandingPage";
+import Shop from "./Shop";
 
 function UserDashboard() {
     const navigate = useNavigate();

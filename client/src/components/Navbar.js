@@ -16,7 +16,7 @@ function Navbar() {
           <img src={Logo} alt="flea market logo"/>
           <div className="hiddenLinks">
           <Link to="/">Home</Link>
-          <Link to="/LandingPage">Shop</Link>
+          <Link to="/Shop">Shop</Link>
           <Link to="/about">About</Link>
           <Link to="/contact">Contact</Link>
           <Link to="/user-dashboard">User Dashboard</Link>
@@ -25,7 +25,7 @@ function Navbar() {
         </div>
         <div className="rightSide">
           <Link to="/">Home</Link>
-          <Link to="/LandingPage">Shop</Link>
+          <Link to="/Shop">Shop</Link>
           <Link to="/about">About</Link>
           <Link to="/contact">Contact</Link>
           <button onClick={toggleNavbar}>
