@@ -1,0 +1,31 @@
+Here's a summary of what has been implemented in ephy branch:
+1. **Authentication System**
+    - Added user login functionality
+    - Implemented login state persistence using localStorage
+    - Added user email storage and display
+    - Protected routes based on login status
+
+2. **Shop Enhancements**
+    - Added login/logout button
+    - Added welcome message with user's email
+    - Implemented conditional navigation (cart redirects to login if not authenticated)
+    - Improved header section with user status
+
+3. **UserDashboard Updates**
+    - Connected dashboard with login system
+    - Added user details section showing logged-in user's email
+    - Protected dashboard access (redirects to login if not authenticated)
+    - Added logout functionality
+    - Maintained cart and purchase history functionality
+
+4. **User Flow Improvements**
+    - Seamless navigation between pages
+    - State persistence across page refreshes
+    - Cart access protection
+    - Clear user session management
+
+5. **Security Basics**
+    - Basic authentication checks
+    - Protected routes
+    - Secure logout process
+    - Session management using localStorage

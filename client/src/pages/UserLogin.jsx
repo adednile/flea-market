@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 
 
@@ -9,8 +9,11 @@ function UserLogin(){
 
     function handleLogin(e){
         e.preventDefault();
-        console.log("Log in in with", email, password);
+        // Set login status in localStorage
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userEmail', email);
 
+        console.log("Log in in with", email, password);
         navigate("/user-dashboard");
     }
 
@@ -66,7 +69,6 @@ function UserLogin(){
             }}
           />
 
-        <Link to="/userdashboard">
           <button
             type="submit"
             style={{
@@ -80,7 +82,7 @@ function UserLogin(){
             }}
           >
             Login
-          </button></Link>
+          </button>
         </form>
 
         <p style={{ textAlign: "center", marginTop: "1.5rem" }}>
