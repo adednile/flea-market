@@ -62,7 +62,7 @@ function Shop(){
     const products = [
         {
             name: "Laptop",
-            image: require("../assets/tech-gadgets.png"),
+            image: require("../assets/macbookpro.jpg"),
             price: "KES 30,000",
             category: "Electronics"
         },
