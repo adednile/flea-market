@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vendor Dashboard - School Flea Market</title>
-  <link rel="stylesheet" href="vendor-dashboard.css">
-</head>
-<body>
-  <div id="app"></div>
-
-  <script>
-    let products = [
+ let products = [
       {
         id: Date.now(),
         name: "Handmade Necklace",
@@ -291,6 +279,4 @@
 
     // Initialize the application
     init();
-  </script>
-</body>
-</html>
+ 
