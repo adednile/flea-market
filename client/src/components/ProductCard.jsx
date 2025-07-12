@@ -1,3 +1,15 @@
+/**
+ * ProductCard component displays a product's image, name, price, and category in a styled card.
+ * Includes a 'Buy Now' button that links to user registration.
+ *
+ * @component
+ * @param {Object} props
+ * @param {string} props.image - Image URL of the product.
+ * @param {string} props.name - Name of the product.
+ * @param {string} props.price - Price of the product.
+ * @param {string} props.category - Category of the product.
+ * @returns {JSX.Element} The rendered product card.
+ */
 import { Link } from "react-router"
 import "../styles/ProductCard.css";
 
@@ -18,7 +30,5 @@ function ProductCard({ image, name, price, category }){
         </div>
     );
 }
-
-
 
 export default ProductCard;

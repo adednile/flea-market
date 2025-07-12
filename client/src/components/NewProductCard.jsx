@@ -1,3 +1,14 @@
+/**
+ * NewProductCard component displays a product's image, name, price, and category in a styled card.
+ *
+ * @component
+ * @param {Object} props
+ * @param {string} props.name - Name of the product.
+ * @param {string} props.image - Image URL of the product.
+ * @param {string} props.price - Price of the product.
+ * @param {string} props.category - Category of the product.
+ * @returns {JSX.Element} The rendered product card.
+ */
 import React from 'react';
 
 function NewProductCard({ name, image, price, category }) {

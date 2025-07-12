@@ -61,9 +61,9 @@ function Shop(){
     //ADD MOCK DATA FROM HERE
     const products = [
         {
-            name: "Laptop",
+            name: "Macbook pro",
             image: require("../assets/macbookpro.jpg"),
-            price: "KES 30,000",
+            price: "KES 250,000",
             category: "Electronics"
         },
         {
@@ -90,6 +90,20 @@ function Shop(){
           image: require("../assets/house-cleaning.jpg"),
           price: "KES 4,500",
           category: "Services"
+        },
+        {
+          name: "JBL headphones",
+          image: require("../assets/jbl.jpg"),
+          price: "KES 17,540",
+          category: "Electronics"
+
+        },
+        {
+          name: "Ipad pro",
+          image: require("../assets/ipad-pro.jpg"),
+          price: "KES 232,540",
+          category: "Electronics"
+
         },
         {
           name: "Madaa Pizza",

@@ -1,4 +1,10 @@
-
+/**
+ * Footer component for the Strathmore Marketplace application.
+ * Displays company info, quick links, contact info, social icons, and customer support.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered footer section.
+ */
 import React  from "react";
 import { Link, useNavigate } from "react-router";
 import "../styles/Footer.css";

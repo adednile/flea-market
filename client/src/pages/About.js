@@ -1,3 +1,10 @@
+/**
+ * About page for the Flea Market application.
+ * Displays information about the platform, its mission, and its community values.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered About page.
+ */
 import React from "react";
 import purchase from "../assets/people-buying.jpg";
 import "../styles/About.css";
@@ -5,6 +12,7 @@ import "../styles/About.css";
 function About() {
   return (
     <div className="about">
+      {/* Top section with background image and headline */}
       <div
         className="aboutTop"
         style={{
@@ -19,16 +27,13 @@ function About() {
            textShadow: "2px 2px 4px rgba(0,0,0,0.7)",
            fontSize: "2rem",
            fontWeight: "bold",
-        
         }}
       >
         Connecting Buyers & Sellers
-        
       </div>
+      {/* Bottom section with about text */}
       <div className="aboutBottom" style={{ padding: "3rem", margin:"auto", lineHeight:"1.8", fontSize:"1.1rem"}}>
-
         <h1 style={{ textAlign:"center", marginBottom:"1.5rem"}}>ABOUT US</h1>
-
         <p>
           Welcome to our Flea Market platform -- your go to destination for discovering unique, affordable & diverse products. Whether you're selling pre-loved items or a local vendor showcasing handmade crafts, we provide the tools to connect you with the right buyers.
         </p>
