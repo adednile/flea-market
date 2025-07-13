@@ -33,17 +33,14 @@ Flea Market is a React-based web application designed for students and vendors i
 git clone https://github.com/adednile/flea-market.git
 cd flea-market
 
-### 2. **Switch to the correct branch**
-git checkout user2
-
-### 3. **Navigate to the frontend folder**
+### 2. **Navigate to the frontend folder**
 cd client
 *This can also be done by right clicking the client folder and opening it as an integrated terminal
 
-### 4. **Install all dependencies**
+### 3. **Install all dependencies**
 npm install
 
-### 5. **Run the application**
+### 4. **Run the application**
 npm start
 
 
