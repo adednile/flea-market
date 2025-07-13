@@ -38,7 +38,7 @@ git checkout user2
 
 ### 3. **Navigate to the frontend folder**
 cd client
-  *This can also be done by right clicking the client folder and opening it as an integrated terminal
+*This can also be done by right clicking the client folder and opening it as an integrated terminal
 
 ### 4. **Install all dependencies**
 npm install
