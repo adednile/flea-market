@@ -25,16 +25,6 @@ Flea Market is a React-based web application designed for students and vendors i
 
 ---
 
-## 🧠 Tech Stack
-
-- **Frontend:** React (Hooks, Functional Components)
-- **Styling:** Custom CSS (responsive & accessible)
-- **File Uploads:** `react-dropzone`, `FileReader`
-- **Routing:** React Router DOM
-- **Persistence:** localStorage
-
----
-
 ## 🛠️ How to Run the Project Locally
 
 > Ensure you have [Node.js](https://nodejs.org/) and `npm` installed.
