@@ -30,18 +30,27 @@ Flea Market is a React-based web application designed for students and vendors i
 > Ensure you have [Node.js](https://nodejs.org/) and `npm` installed.
 
 ### 1. **Clone the Repository**
+```bash
 git clone https://github.com/adednile/flea-market.git
+```
+```bash
 cd flea-market
-
+```
 ### 2. **Navigate to the frontend folder**
+```bash
 cd client
+```
 *This can also be done by right clicking the client folder and opening it as an integrated terminal
 
 ### 3. **Install all dependencies**
+```bash
 npm install
+```
 
 ### 4. **Run the application**
+```bash
 npm start
+```
 
 
 
